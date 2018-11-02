@@ -3,15 +3,47 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.3, user-scalable=no, viewport-fit=cover">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>vue-eletest</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_896811_6usnw0bam2p.css">
+    <script>
+      (function (doc, win) {
+          var docEl = doc.documentElement,
+              resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                   var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                        if(clientWidth>=640){
+                     docEl.style.fontSize = '100px';
+                  }else{
+                     docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';                 }
+             };
+            if (!doc.addEventListener) return;
+         win.addEventListener(resizeEvt, recalc, false);
+         doc.addEventListener('DOMContentLoaded', recalc, false);
+     })(document, window);
+    </script>
+    <title>饱了么</title>
+    <style>
+      *, ::after, ::before{
+        box-sizing: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+      html{
+        box-sizing: border-box;
+        color: #333;
+        line-height: 1.2;
+        user-select: none;
+        touch-action: manipulation;
+        font-family: 'Helvetica Neue',Tahoma,Arial,PingFangSC-Regular,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
+      }
+      body, button, dd, dl, ol, ul {
+            margin: 0;
+            padding: 0;
+    }
+    </style>
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but vue-eletest doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>
