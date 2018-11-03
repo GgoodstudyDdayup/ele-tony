@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.3, user-scalable=no, viewport-fit=cover">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_896811_6usnw0bam2p.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_896811_4k3ew30cen.css">
     <script>
       (function (doc, win) {
           var docEl = doc.documentElement,
@@ -23,6 +22,7 @@
          doc.addEventListener('DOMContentLoaded', recalc, false);
      })(document, window);
     </script>
+   
     <title>饱了么</title>
     <style>
       *, ::after, ::before{
@@ -45,5 +45,21 @@
   </head>
   <body>
     <div id="app"></div>
+    <script> 
+      var mySwiper = new Swiper ('.swiper-container', {
+        direction: 'vertical',
+        loop: true,
+        
+        // 如果需要分页器
+        pagination: '.swiper-pagination',
+        
+        // 如果需要前进后退按钮
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        
+        // 如果需要滚动条
+        scrollbar: '.swiper-scrollbar',
+      }) 
+      </script>
   </body>
 </html>
