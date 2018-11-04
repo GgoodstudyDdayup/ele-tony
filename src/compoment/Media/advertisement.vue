@@ -1,8 +1,8 @@
 <template>
     <div class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">000</div>
+        <div class="swiper-slide">000</div>
     </div>
     <!-- 如果需要分页器 -->
     <div class="swiper-pagination"></div>

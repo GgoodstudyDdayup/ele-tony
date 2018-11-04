@@ -10,9 +10,11 @@
             <a @click.prevent="changecolor(3)" :class=" flag == 3 ? 'faxianjihuo-copy' :''" class="iconfont icon-ali-shiyongwendang" >
                 <section>{{aa.c}}</section>
             </a>
-            <a @click.prevent="changecolor(4)" :class=" flag == 4 ? 'iconfont icon-ali-icon_zhanghao-copy' :'iconfont icon-ali-icon_zhanghao' ">
+
+            <router-link to="/vip" @click.prevent="changecolor(4)" :class=" flag == 4 ? 'iconfont icon-ali-icon_zhanghao-copy' :'iconfont icon-ali-icon_zhanghao' ">
                 <section>{{aa.d}}</section>
-            </a>
+            </router-link>
+            
         </div>
     </footer>
 </template>
@@ -33,6 +35,7 @@ export default {
         changecolor (a) {
             console.log(1)
             this.flag = a;
+            this.$router.push('/vip')
         }
     }
 }
