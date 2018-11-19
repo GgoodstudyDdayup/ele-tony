@@ -10,6 +10,7 @@
       <div style="position:sticky;top: 100px;z-index: 100;">
         <app-filter-title></app-filter-title>
       </div>
+      <app-shoplist></app-shoplist>
       <br>
       <br>
       <br>
@@ -38,6 +39,7 @@
     </div>    
 </template>
 <script>
+import Shoplist from "./compoment/Fooditem/food-item.vue"
 import FilterTitle from "./compoment/Filter/filterTitle.vue"
 import Adv from './compoment/Media/advertisement.vue'
 import Search from "./compoment/Head/search.vue"
@@ -50,6 +52,7 @@ export default {
     'app-adv':Adv,
     'app-search':Search,
     'app-auto':Autotab,
+    'app-shoplist':Shoplist
 
   },
   data(){
