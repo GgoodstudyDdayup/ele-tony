@@ -1,16 +1,57 @@
 <template>
     <div>
       <app-header></app-header>
-      <app-search></app-search>
+      <div style="position:sticky;top: 0px;z-index:999;">
+        <app-search></app-search>
+      </div>
       <app-adv></app-adv>
+      <app-auto></app-auto>
+      <app-shoptitle></app-shoptitle>
+      <div style="position:sticky;top: 100px;z-index: 100;">
+        <app-filter-title></app-filter-title>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
       <app-footer :aa="bb" ></app-footer>
-      <router-view></router-view>
     </div>    
 </template>
 <script>
-
+import FilterTitle from "./compoment/Filter/filterTitle.vue"
+import Adv from './compoment/Media/advertisement.vue'
+import Search from "./compoment/Head/search.vue"
+import Autotab from "./compoment/Media/autoImg.vue"
+import ShoplistTitle from "./compoment/Media/shoplist.vue"
 export default {
-  
+  components:{
+    'app-filter-title':FilterTitle,
+    'app-shoptitle':ShoplistTitle,
+    'app-adv':Adv,
+    'app-search':Search,
+    'app-auto':Autotab,
+
+  },
   data(){
     return{
       bb:{
@@ -21,7 +62,7 @@ export default {
       }, 
     }
   },
-  methods: {
+  /* methods: {
     axiosTest:function(){
       var _this = this;
       console.log(this.bb.a)
@@ -41,7 +82,7 @@ export default {
   },
   mounted(){
       this.axiosTest();
-  },
+  }, */
 }
 
 

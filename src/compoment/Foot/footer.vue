@@ -1,43 +1,43 @@
 <template>
     <footer class="fixed">
         <div class="index-footer">
-            <a @click.prevent="changecolor(1)" :class=" flag == 1 ? '' :''" class="iconfont icon-ali-changyonglogo40" >
-                <section>{{aa.a}}</section>
+            <a @click.prevent="changecolor(1)" :class=" flag == 1 ? '' :''" class="iconfont icon-ali-changyonglogo40-copy" >
+                <section>{{name[0]}}</section>
             </a>
             <a @click.prevent="changecolor(2)" :class=" flag == 2 ? '' :''" class="iconfont icon-ali-faxianjihuo" >
-                <section>{{aa.b}}</section>
+                <section>{{name[1]}}</section>
             </a>
-            <a @click.prevent="changecolor(3)" :class=" flag == 3 ? 'faxianjihuo-copy' :''" class="iconfont icon-ali-shiyongwendang" >
-                <section>{{aa.c}}</section>
+            <a @click.prevent="changecolor(3)" :class=" flag == 3 ? '' :''" class="iconfont icon-ali-shiyongwendang" >
+                <section>{{name[2]}}</section>
             </a>
 
-            <router-link to="/vip" @click.prevent="changecolor(4)" :class=" flag == 4 ? 'iconfont icon-ali-icon_zhanghao-copy' :'iconfont icon-ali-icon_zhanghao' ">
-                <section>{{aa.d}}</section>
-            </router-link>
+            <a @click.prevent="changecolor(4)" :class=" flag == 4 ? '' :''" class="iconfont icon-ali-renwu">
+                <section>{{name[3]}}</section>
+            </a>
             
         </div>
     </footer>
 </template>
 <script>
 export default {
-    props:[
-        'aa',
-    ],
-
     data(){
         return {
+            name:['首页','发现','订单','我的'],
             flag:1,
-            s: 'javascript :void (0)'
+            changecolor:function(a){
+            this.flag = a
+            //添加新的样式先不管
         }
-    },
+    }
+}
 
-    methods: {
+    /* methods: {
         changecolor (a) {
             console.log(1)
             this.flag = a;
             this.$router.push('/vip')
         }
-    }
+    } */
 }
 
 

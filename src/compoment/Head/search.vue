@@ -1,5 +1,5 @@
 <template>
-    <div class="search-wapper" style="position:sticky;top: 0px;z-index:999;">
+    <div class="search-wapper" >
         <div class="search">
             <a class=" sousuo iconfont icon-ali-sousuo"    href="">
                 <span class="content">搜索饱了么商家,商品名称</span>
