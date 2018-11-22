@@ -1,20 +1,18 @@
 <template>
     <footer class="fixed">
         <div class="index-footer">
-            <a @click.prevent="changecolor(1)" :class=" flag == 1 ? '' :''" class="iconfont icon-ali-changyonglogo40-copy" >
+            <router-link to="/firstPage" class="iconfont icon-ali-changyonglogo40-copy" >
                 <section>{{name[0]}}</section>
-            </a>
-            <a @click.prevent="changecolor(2)" :class=" flag == 2 ? '' :''" class="iconfont icon-ali-faxianjihuo" >
+            </router-link>
+            <a class="iconfont icon-ali-faxianjihuo" >
                 <section>{{name[1]}}</section>
             </a>
-            <a @click.prevent="changecolor(3)" :class=" flag == 3 ? '' :''" class="iconfont icon-ali-shiyongwendang" >
+            <a class="iconfont icon-ali-shiyongwendang" >
                 <section>{{name[2]}}</section>
             </a>
-
-            <a @click.prevent="changecolor(4)" :class=" flag == 4 ? '' :''" class="iconfont icon-ali-renwu">
+            <router-link to="/myself" @click.native="flushCom()" class="iconfont icon-ali-renwu">
                 <section>{{name[3]}}</section>
-            </a>
-            
+            </router-link>
         </div>
     </footer>
 </template>
@@ -24,12 +22,15 @@ export default {
         return {
             name:['首页','发现','订单','我的'],
             flag:1,
-            changecolor:function(a){
-            this.flag = a
-            //添加新的样式先不管
         }
-    }
+    },
+    methods:{
+　　　　flushCom(){
+　　　　　　  
+　　　　}
+　　}
 }
+
 
     /* methods: {
         changecolor (a) {
@@ -38,7 +39,7 @@ export default {
             this.$router.push('/vip')
         }
     } */
-}
+
 
 
 </script>

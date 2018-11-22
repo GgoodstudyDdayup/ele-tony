@@ -52,7 +52,7 @@ export default {
     width: 100%;
 }
 .content{
-    margin-left: 15px;
+    margin-left: 3vw;
     font-size: .313333rem;
     font-family: simsun;
 }

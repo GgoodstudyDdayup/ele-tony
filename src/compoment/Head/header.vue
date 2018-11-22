@@ -14,7 +14,7 @@
 export default {
     data(){
         return{
-            name:"解放新村之虎顾振华"
+            name:"摸摸茶顾振华"
         }
     }
 }
