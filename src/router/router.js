@@ -4,11 +4,13 @@ Vue.use(VueRouter)
 
 import myself from '../compoment/Foot/foot-myself'
 import FirstPage from '../Firstpage/firstPage'
+import ShopId from '../compoment/Fooditem/shop'
 
 export default new VueRouter({
     routes:[
-        {path:'/' ,redirect:'/firstPage'},
+        {path:'/' ,redirect:'/shop-id'},
         {path:'/myself',component:myself,} ,
-        {path:'/firstPage',component:FirstPage,}   
+        {path:'/firstPage',component:FirstPage,},
+        {path:'/shop-id',component:ShopId}   
     ]
 })

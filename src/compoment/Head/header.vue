@@ -14,7 +14,7 @@
 export default {
     data(){
         return{
-            name:"摸摸茶顾振华"
+            name:"祝小顾多多开单"
         }
     }
 }
