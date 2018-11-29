@@ -1,6 +1,6 @@
 <template>
-   <div>
-       <div class="shop-title">
+    <div>
+        <div class="shop-title">
            <nav class="img-header">
                <a class="fanhui"></a>
            </nav>
@@ -24,38 +24,41 @@
                </div>
                <p class="gonggao">公告：一杯简单饮品，存在着您无法想象的灵魂</p>
            </div>
-       </div>
-       <div style="position:sticky;top:0px;z-index:2;">
-           <div class="shop-tab">
-               <div class="shop-tab2">
-                   <p @click="changeMode(1)" :class="flag ==1?'tab-name':'tab-name2'">
+        </div>
+        <div style="position:sticky;top:0px;z-index:2;">
+            <div class="shop-tab">
+                <div class="shop-tab2">
+                    <p @click="changeMode(1)" :class="flag ==1?'tab-name':'tab-name2'">
                        点餐
                        <span :class="flag == 1?'shop-tab-little':''" ></span>
-                   </p>
-               </div>
-               <div class="shop-tab2">
-                   <p @click="changeMode(2)" :class="flag ==2?'tab-name':'tab-name2'">
+                    </p>
+                </div>
+                <div class="shop-tab2">
+                    <p @click="changeMode(2)" :class="flag ==2?'tab-name':'tab-name2'">
                        评论
-                       <span :class="flag == 2?'shop-tab-little':''" ></span>
-                   </p>
-               </div>
-               <div class="shop-tab2">
+                         <span :class="flag == 2?'shop-tab-little':''" ></span>
+                    </p>
+                </div>
+                <div class="shop-tab2">
                    <p @click="changeMode(3)" :class="flag ==3?'tab-name':'tab-name2'">
                        商家
                        <span :class="flag == 3?'shop-tab-little':''" ></span>
                    </p>
-               </div>
+                </div>
            </div>
-       </div>
-       <app-recommend></app-recommend>
-   </div>
+        </div>
+            <app-recommend></app-recommend>
+            <app-order></app-order>
+    </div>
    
 </template>
 <script>
 import Sellerrecommend from './shop-order.vue'
+import Order from "./order.vue"
 export default {
     components:{
-        'app-recommend':Sellerrecommend
+        'app-recommend':Sellerrecommend,
+        'app-order':Order
     },
     data(){
         return{
@@ -70,6 +73,9 @@ export default {
 }
 </script>
 <style scoped>
+p{
+    margin: 0;
+}
 .shop-title{
     color: #333;
     font-size: .2933333rem;
@@ -253,7 +259,7 @@ export default {
     position: relative;
     flex: 1;
     text-align: center;
-    font-size: .33333rem;
+    font-size: .30333rem;
     color: #666;
     border-bottom: 1px solid #ebebeb;
 }

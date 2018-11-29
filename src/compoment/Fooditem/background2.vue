@@ -1,13 +1,11 @@
 <template>
     <div>
-    <div :class=" aa==false&&bb==false ? '':'modal'"></div>
+    <div :class=" ss==false ? 'modal':''"></div>
     </div>
 </template>
 <script>
-export default { 
-    props:['aa','bb'],
-    methods:{
-    }
+export default {
+    props:['ss']
 }
 </script>
 <style scoped>

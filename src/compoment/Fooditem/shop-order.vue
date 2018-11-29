@@ -1,7 +1,8 @@
 <template>
-    <div class="seller">
-        <p class="seller-recommend">商家推荐</p>
-        <div class="recommend2">
+    <div>
+        <div class="seller">      
+            <p class="seller-recommend">商家推荐</p>
+            <div class="recommend2">
             <div class="recommend3">
                 <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" class="recommend-img">
                 <p class="recommend-name">(大杯)绿茶玛奇朵</p>
@@ -10,7 +11,7 @@
                     <p style="color:rgb(255,83,57)">
                         <small>￥</small>15<span class="food-card2">起</span>
                     </p>
-                    <span class="iconfont icon-ali-jiahao- button"></span>
+                    <span @click="runchange" class="iconfont icon-ali-jiahao- button"></span>
                 </div>
             </div>
             <div class="recommend3">
@@ -43,7 +44,7 @@
                     <p style="color:rgb(255,83,57)">
                         <small>￥</small>15<span class="food-card2">起</span>
                     </p>
-                    <span class="iconfont icon-ali-jiahao- button"></span>
+                    <span  class="iconfont icon-ali-jiahao- button"></span>
                 </div>
             </div>
             <div class="recommend3">
@@ -55,14 +56,37 @@
                         <small>￥</small>15<span class="food-card2">起</span>
                     </p>
                     <span class="iconfont icon-ali-jiahao- button " ></span>
-                </div>
+                </div>   
+            </div>        
+        </div>       
+            <div>
+                <app-modal @click.native="disappear" :ss='ss'></app-modal>
+                <app-info :ss='ss' ></app-info> 
             </div>
         </div>
     </div>
 </template>
 <script>
+import background2 from "./background2.vue"
+import Info from "./shop-information.vue"
 export default {
-    
+    components:{
+        'app-modal':background2,
+        'app-info':Info,
+    },
+    data(){
+        return{
+            ss:true
+        }
+    },
+    methods:{
+        runchange(){
+            this.ss = !this.ss
+        },
+        disappear(){
+            this.ss = true
+        }
+    }
 }
 </script>
 <style scoped>
@@ -130,9 +154,7 @@ export default {
     margin-left: .026667rem;
     margin-left: .266667vw;
 }
-.food-card{
-    margin-top: -0.5rem;
-    margin-top: -5.4vw;  
+.food-card{  
     font-size:.38rem;
     display: flex;
     align-items: center;
@@ -141,6 +163,10 @@ export default {
     padding-right: .266667vw;
 }
 .button{
-    font-size: .46666rem
+    font-size: .46666rem;
 }
+.iconfont{
+    color: #2395ff;
+}
+
 </style>
