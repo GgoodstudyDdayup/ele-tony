@@ -1,31 +1,25 @@
-<template>
+<template >
     <div style="height:168vw;">
         <div class="order-main">
             <main class="order-main2">
-                <div class="menu">
-                    <div class="miaodian">
-                        <a href="#demo1" style="text-decoration:none;color:#666" >热销</a>
-                    </div>
-                    <div class="miaodian">
-                        <a href="#demo2" style="text-decoration:none;color:#666" >找醇茶</a>
-                    </div>
-                    <div class="miaodian">
-                        <a href="#demo3 " style="text-decoration:none;color:#666" >找好茶</a>
+                <div class="menu" >    
+                    <div class="miaodian" v-for= "(item,index) in menuName" :key="index">
+                    <a :href="'#demo'+index" style="text-decoration:none;color:#666" >{{ item }}</a>
                     </div>
                 </div>
                 <section class="menu-comment">
-                    <div class="comment" id="demo1">
+                    <div class="comment" id="">
                         <dl>
                             <dt>
                                 <div class="cate-title">
-                                    <strong class="cate-name">热销</strong>
+                                    <strong class="cate-name"></strong>
                                     <span class="cate-desc">大家喜欢吃才叫好吃</span>
                                 </div>
                             </dt>
                             <dd>
                                 <div class="fooddetails-root">
                                     <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
+                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp">
                                     </span>
                                     <section class="fooddetails-info">
                                         <p class="fooddetails-name">
@@ -42,206 +36,6 @@
                             </dd>
                         </dl>
                     </div>
-                    <div class="comment" id="demo2">
-                        <dl>
-                            <dt>
-                                <div class="cate-title">
-                                    <strong  class="cate-name">找醇茶</strong>
-                                    <span class="cate-desc">需要配料，请于[找好茶]订购</span>
-                                </div>
-                            </dt>
-                            <dd>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(大杯)红茶玛奇朵</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">玛奇朵饮品外送，口感软Q，主要源自于。。。。</p>
-                                        <p class="fooddetails-sales">月售264份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                            </dd>
-                        </dl>
-                    </div>
-                    <div class="comment" id="demo3">
-                        <dl>
-                            <dt>
-                                <div class="cate-title">
-                                    <strong  class="cate-name">找好茶</strong>
-                                    <span class="cate-desc" ></span>
-                                </div>
-                            </dt>
-                            <dd>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="fooddetails-root">
-                                    <span class="fooddetails-logo">
-                                        <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp" alt="">
-                                    </span>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)红茶拿铁</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">拿铁系列饮品，外卖服务。。。。。</p>
-                                        <p class="fooddetails-sales">月售166份 好评率100%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
-                                        </div>
-                                    </section>
-                                </div>
-                            </dd>
-                        </dl>
-                    </div>
                 </section>
             </main>
         </div>
@@ -249,7 +43,12 @@
 </template>
 <script>
 export default {
-    
+    data(){
+        return{
+            menuName:['热销','找醇茶','找好茶'],
+            commentName:['','','']
+        }
+    }
 }
 </script>
 <style scoped>

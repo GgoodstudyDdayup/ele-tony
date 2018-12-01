@@ -53,7 +53,7 @@
    
 </template>
 <script>
-import Sellerrecommend from './shop-order.vue'
+import Sellerrecommend from './recommend.vue'
 import Order from "./order.vue"
 export default {
     components:{

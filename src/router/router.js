@@ -4,7 +4,7 @@ Vue.use(VueRouter)
 
 import myself from '../compoment/Foot/foot-myself'
 import FirstPage from '../Firstpage/firstPage'
-import ShopId from '../compoment/Fooditem/shop'
+import ShopId from '../compoment/Fooditem/shopmain'
 
 export default new VueRouter({
     routes:[
