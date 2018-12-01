@@ -13,7 +13,7 @@
                             <dt>
                                 <div class="cate-title">
                                     <strong class="cate-name"></strong>
-                                    <span class="cate-desc">大家喜欢吃才叫好吃</span>
+                                    <span class="cate-desc">大家喜欢吃才叫好吃{{count}}</span>
                                 </div>
                             </dt>
                             <dd>
@@ -21,15 +21,31 @@
                                     <span class="fooddetails-logo">
                                         <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp">
                                     </span>
+
                                     <section class="fooddetails-info">
                                         <p class="fooddetails-name">
                                             <span class="fooddetails-nametext">(中杯)四季奶青</span>
                                         </p>
                                         <p class="fooddetails-desc2">四季春茶搭配特选植物油，经由。。。。。。</p>
                                         <p class="fooddetails-sales">月售388份 好评率98%</p>
-                                        <div>
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price">￥15起</p>
-                                            <span class="fooddetails-button iconfont icon-ali-jiahao- button"></span>
+                                        <div >
+                                            <p style="color:rgb(255,83,57)" class="saleinfo-price" >￥15起</p>
+                                            <span @click="jian(1)" class="fooddetails-button2" v-html="item[0].message">{{ item[0].message }}</span>
+                                            <span  style="position: absolute;font-size: 0.3rem;left: 30vw;bottom: 7vw;color:#333">{{ item[0].number }}</span>
+                                            <span @click="add(1)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                           
+                                        </div>
+                                    </section>
+                                    <section class="fooddetails-info">
+                                        <p class="fooddetails-name">
+                                            <span class="fooddetails-nametext">(中杯)四季奶青</span>
+                                        </p>
+                                        <p class="fooddetails-desc2">四季春茶搭配特选植物油，经由。。。。。。</p>
+                                        <p class="fooddetails-sales">月售388份 好评率98%</p>
+                                        <div >
+                                            <p style="color:rgb(255,83,57)" class="saleinfo-price" >￥15起</p>
+                                            <span @click="jian(2)" class="fooddetails-button2" v-html="item[1].message">{{ item[1].message }}</span>
+                                            <span  style="position: absolute;font-size: 0.3rem;left: 30vw;bottom: 7vw;color:#333">{{ item[1].number }}</span>
+                                            <span @click="add(2)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                           
                                         </div>
                                     </section>
                                 </div>
@@ -46,10 +62,67 @@ export default {
     data(){
         return{
             menuName:['热销','找醇茶','找好茶'],
-            commentName:['','','']
+            commentName:['','',''],
+            message:'',
+            number:'',
+            count:'',
+            item:[{
+                id:1,
+                number:'',
+                message:''
+            },
+            {
+                id:2,
+                number:'',
+                message:''
+            }]
         }
+    },
+    methods:{
+            add(id){
+                for (var i = 0 ;i<this.item.length;i++){
+                    if (this.item[i].id == id){
+                        if(this.item[i].number ==''){
+                            this.item[i].message = '<span style="font-size:44px;color: #333;" class="iconfont icon-ali-jianhao"></span>'
+                            this.item[i].number = 1
+                            if (this.count == ''){
+                                this.count = 1
+                            }else{
+                                this.count += 1
+                            }
+                        }else{
+                            this.item[i].number += 1
+                            this.count += 1
+                        }
+                    }
+                }
+            },
+            jian(id){
+                for(var i = 0;i<this.item.length;i++){
+                    if(this.item[i].id==id){
+                        if(this.item[i].number == 1){
+                            this.item[i].message =''
+                            this.item[i].number=''
+                            if (this.count == 1){
+                                this.count = ''
+                            }else{
+                                this.count -= 1
+                            }
+                        }else{
+                            this.item[i].number -=1
+                            this.count -=1
+                        }
+                    }
+                }
+                
+            }                                       
+    },
+    computed:{
+            changeNumber(){
+                return this.number
+            }
     }
-}
+}  
 </script>
 <style scoped>
 .order-main{
@@ -198,9 +271,16 @@ dd{
     position: absolute;
     right: .4rem;
     right: 4vw;
+    bottom: 1.926667rem;
+    bottom: 5.266667vw;
+}
+.fooddetails-button2{
+    position: absolute;
+    top: 9.5vw;
+    left: 2rem;
+    left: 20vw;
     bottom: .526667rem;
     bottom: 5.266667vw;
-
 }
 .fooddetails-logo{
     display: inline-block;

@@ -49,16 +49,19 @@
         </div>
             <app-recommend></app-recommend>
             <app-order></app-order>
+            <app-orderFooter></app-orderFooter>
     </div>
    
 </template>
 <script>
 import Sellerrecommend from './recommend.vue'
 import Order from "./order.vue"
+import footer from "./order-footer.vue"
 export default {
     components:{
         'app-recommend':Sellerrecommend,
-        'app-order':Order
+        'app-order':Order,
+        'app-orderFooter':footer
     },
     data(){
         return{
