@@ -14,7 +14,7 @@
 export default {
     data(){
         return{
-            name:"祝小顾多多开单"
+            name:"亚光请过目"
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <section class="shoplist">
+    <router-link to="/shop-id" class="shoplist" style="text-decoration:none;">
         <section class="shoplist-1">
             <div class="shoplist-2">
                 <div class="shoplist-logo">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </section>
-    </section>
+    </router-link>
 </template>
 <script>
 export default {

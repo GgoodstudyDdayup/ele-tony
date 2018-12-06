@@ -2,7 +2,7 @@
     <div>
         <div class="shop-title">
            <nav class="img-header">
-               <a class="fanhui"></a>
+               <a @click="jump" class="fanhui"></a>
            </nav>
            <div class="shop-information">
                <div class="small-image">
@@ -49,19 +49,15 @@
         </div>
             <app-recommend></app-recommend>
             <app-order></app-order>
-            <app-orderFooter></app-orderFooter>
     </div>
-   
 </template>
 <script>
 import Sellerrecommend from './recommend.vue'
 import Order from "./order.vue"
-import footer from "./order-footer.vue"
 export default {
     components:{
         'app-recommend':Sellerrecommend,
         'app-order':Order,
-        'app-orderFooter':footer
     },
     data(){
         return{
@@ -71,7 +67,10 @@ export default {
     methods:{
         changeMode(a){
             this.flag = a
-        }
+        },
+        jump(){
+                this.$router.go(-1)
+            }
     }
 }
 </script>

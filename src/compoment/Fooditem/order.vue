@@ -3,17 +3,19 @@
         <div class="order-main">
             <main class="order-main2">
                 <div class="menu" >    
-                    <div class="miaodian" v-for= "(item,index) in menuName" :key="index">
-                    <a :href="'#demo'+index" style="text-decoration:none;color:#666" >{{ item }}</a>
+                    <div class="miaodian" v-for= "(menuNames,index) in menuName" :key="index">
+                    <a :href="'#demo'+index" style="text-decoration:none;color:#666" >{{ menuNames.message }}
+                        <span :class=" menuName[index].listcount >= 1?'active':'active1'">{{ menuName[index].listcount }}</span>
+                    </a>
                     </div>
                 </div>
-                <section class="menu-comment">
-                    <div class="comment" id="">
+                <section class="menu-comment" >
+                    <div class="comment" id="" v-for="(title,a) in menuName" :key="a">
                         <dl>
                             <dt>
-                                <div class="cate-title">
-                                    <strong class="cate-name"></strong>
-                                    <span class="cate-desc">大家喜欢吃才叫好吃{{count}}</span>
+                                <div class="cate-title" >
+                                    <strong class="cate-name">{{title.message}}</strong>
+                                    <span class="cate-desc">大家喜欢吃才叫好吃</span>
                                 </div>
                             </dt>
                             <dd>
@@ -30,101 +32,111 @@
                                         <p class="fooddetails-sales">月售388份 好评率98%</p>
                                         <div >
                                             <p style="color:rgb(255,83,57)" class="saleinfo-price" >￥15起</p>
-                                            <span @click="jian(1)" class="fooddetails-button2" v-html="item[0].message">{{ item[0].message }}</span>
-                                            <span  style="position: absolute;font-size: 0.3rem;left: 30vw;bottom: 7vw;color:#333">{{ item[0].number }}</span>
-                                            <span @click="add(1)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                           
+                                            <span @click="minus(a)" class="fooddetails-button2" v-html="menuName[a].messages"></span>
+                                            <span  style="position: absolute;font-size: 0.3rem;left: 30vw;bottom: 7vw;color:#333">{{ menuName[a].number }}</span>
+                                            <span @click="add(a)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                           
                                         </div>
                                     </section>
-                                    <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)四季奶青</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">四季春茶搭配特选植物油，经由。。。。。。</p>
-                                        <p class="fooddetails-sales">月售388份 好评率98%</p>
-                                        <div >
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price" >￥15起</p>
-                                            <span @click="jian(2)" class="fooddetails-button2" v-html="item[1].message">{{ item[1].message }}</span>
-                                            <span  style="position: absolute;font-size: 0.3rem;left: 30vw;bottom: 7vw;color:#333">{{ item[1].number }}</span>
-                                            <span @click="add(2)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                           
-                                        </div>
-                                    </section>
-                                </div>
+                                </div> 
                             </dd>
                         </dl>
                     </div>
                 </section>
             </main>
         </div>
+    <app-orderFooter :menuName ='menuName'  :allcount='allcount' ></app-orderFooter>
     </div>    
 </template>
 <script>
+    import footer from "./order-footer.vue"
 export default {
+    components:{
+        'app-orderFooter':footer
+    },
     data(){
         return{
-            menuName:['热销','找醇茶','找好茶'],
-            commentName:['','',''],
-            message:'',
-            number:'',
-            count:'',
-            item:[{
-                id:1,
-                number:'',
-                message:''
-            },
-            {
-                id:2,
-                number:'',
-                message:''
-            }]
+            menuName:[
+                {message:'热销',id:0,number:'',listcount:'',messages:''},
+                {message:'找醇茶',id:1,number:'',listcount:'',messages:'' },
+                {message:'找好茶',id:2,number:'',listcount:'',messages:'' }],
+            
+            allcount:'', 
         }
     },
     methods:{
             add(id){
-                for (var i = 0 ;i<this.item.length;i++){
-                    if (this.item[i].id == id){
-                        if(this.item[i].number ==''){
-                            this.item[i].message = '<span style="font-size:44px;color: #333;" class="iconfont icon-ali-jianhao"></span>'
-                            this.item[i].number = 1
-                            if (this.count == ''){
-                                this.count = 1
-                            }else{
-                                this.count += 1
-                            }
+                for (var i = 0 ; i < this.menuName.length;i++){
+                    if (this.menuName[i].id == id){
+                        if(this.allcount == ''){
+                            this.allcount = 1
                         }else{
-                            this.item[i].number += 1
-                            this.count += 1
+                            this.allcount +=1
                         }
+                        if(this.menuName[i].number ==''){
+                            this.menuName[i].messages = '<span style="font-size:44px;color: #333;" class="iconfont icon-ali-jianhao"></span>'
+                            this.menuName[i].number = 1
+                            if (this.menuName[i].listcount == ''){
+                                this.menuName[i].listcount = 1    
+                            }else{
+                                this.menuName[i].listcount += 1         
+                            }
+                    }else{ 
+                        this.menuName[i].number += 1
+                        this.menuName[i].listcount += 1                            
+                    }
+                }      
+            }   
+        },
+            minus(id){
+                for(var i = 0;i<this.menuName.length;i++){
+                    if(this.menuName[i].id==id){
+                        if(this.allcount == 1){
+                            this.allcount = ''
+                        }else{
+                            this.allcount -=1
+                        }
+                        if(this.menuName[i].number == 1){   
+                            this.menuName[i].number=''
+                            this.menuName[i].messages ='    '
+                            if (this.menuName[i].listcount == 1){
+                                this.menuName[i].listcount = ''
+                            }else{
+                                this.menuName[i].listcount -= 1
+                            }
+                    }else{
+                        this.menuName[i].number -=1
+                        this.menuName[i].listcount -=1
                     }
                 }
-            },
-            jian(id){
-                for(var i = 0;i<this.item.length;i++){
-                    if(this.item[i].id==id){
-                        if(this.item[i].number == 1){
-                            this.item[i].message =''
-                            this.item[i].number=''
-                            if (this.count == 1){
-                                this.count = ''
-                            }else{
-                                this.count -= 1
-                            }
-                        }else{
-                            this.item[i].number -=1
-                            this.count -=1
-                        }
-                    }
-                }
-                
-            }                                       
+            }    
+        }
     },
     computed:{
-            changeNumber(){
-                return this.number
-            }
+        Count(){
+            return this.allcount
+        }
     }
-}  
+} 
 </script>
 <style scoped>
+ .active{
+    display: inline-block;
+    right: -.12rem;
+    right: -1.2vw;
+    top: -.133333rem;
+    top: -1.333333vw;
+    line-height: 1;
+    background-image: linear-gradient(-90deg,#ff7416,#ff3c15 98%);
+    color: #fff;
+    border-radius: .22rem;
+    border-radius: 2.2vw;
+    padding: .053333rem .133333rem;
+    padding: .533333vw 1.333333vw;
+    font-size: .186667rem;
+ }
+ .active1{
+     display: none
+ }
 .order-main{
     padding-bottom: 1.28rem;
     padding-bottom: 12.8vw;
