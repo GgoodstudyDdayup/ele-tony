@@ -3,39 +3,36 @@
         <div class="order-main">
             <main class="order-main2">
                 <div class="menu" >    
-                    <div class="miaodian" v-for= "(menuNames,index) in menuName" :key="index">
-                    <a :href="'#demo'+index" style="text-decoration:none;color:#666" >{{ menuNames.message }}
-                        <span :class=" menuName[index].listcount >= 1?'active':'active1'">{{ menuName[index].listcount }}</span>
+                    <div class="miaodian" v-for= "(m,i) in menuName" :key="i">
+                    <a :href="'#demo'+i" style="text-decoration:none;color:#666" >{{ m.name }}
+                        <span :class="m.allcount >=1 ?'active':'active1'" >{{ m.allcount }}</span>
                     </a>
                     </div>
                 </div>
                 <section class="menu-comment" >
-                    <div class="comment" id="" v-for="(title,a) in menuName" :key="a">
+                    <div class="comment" v-for="(title,a) in menuName" :key="a">
                         <dl>
                             <dt>
                                 <div class="cate-title" >
-                                    <strong class="cate-name">{{title.message}}</strong>
+                                    <strong class="cate-name">{{title.name}}</strong>
                                     <span class="cate-desc">大家喜欢吃才叫好吃</span>
                                 </div>
                             </dt>
                             <dd>
-                                <div class="fooddetails-root">
+                                <div v-for="(title1,b) in menuName[a].food" :key="b" class="fooddetails-root">
                                     <span class="fooddetails-logo">
                                         <img src="../../some-img2/696aa5cf9820adada9b11a3d14bf5jpeg.webp">
                                     </span>
-
                                     <section class="fooddetails-info">
-                                        <p class="fooddetails-name">
-                                            <span class="fooddetails-nametext">(中杯)四季奶青</span>
-                                        </p>
-                                        <p class="fooddetails-desc2">四季春茶搭配特选植物油，经由。。。。。。</p>
-                                        <p class="fooddetails-sales">月售388份 好评率98%</p>
-                                        <div >
-                                            <p style="color:rgb(255,83,57)" class="saleinfo-price" >￥15起</p>
-                                            <span @click="minus(a)" class="fooddetails-button2" v-html="menuName[a].messages"></span>
-                                            <span  style="position: absolute;font-size: 0.3rem;left: 30vw;bottom: 7vw;color:#333">{{ menuName[a].number }}</span>
-                                            <span @click="add(a)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                           
-                                        </div>
+                                            <p class="fooddetails-name">
+                                                <span class="fooddetails-nametext">{{ title1.name }}</span>
+                                            </p>
+                                            <p class="fooddetails-desc2">四季春茶搭配特选植物油，经由。。。。。。</p>
+                                            <p class="fooddetails-sales">月售388份 好评率98%</p>
+                                            <p style="color:rgb(255,83,57)" class="saleinfo-price" >{{ '￥' + title1.price +'元' }}</p>
+                                            <span @click="minus(title1.id,a,b)" class="fooddetails-button2" v-html="title1.messages"></span>
+                                            <span  style="position: absolute;font-size: 0.3rem;left: 30vw;bottom: 7vw;color:#333">{{ title1.number }}</span>
+                                            <span @click="add(title1.id,a,b)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                                
                                     </section>
                                 </div> 
                             </dd>
@@ -44,7 +41,7 @@
                 </section>
             </main>
         </div>
-    <app-orderFooter :menuName ='menuName'  :allcount='allcount' ></app-orderFooter>
+    <app-orderFooter :menuName ='menuName'  :allcount='allcount' :goods='goods' ></app-orderFooter>
     </div>    
 </template>
 <script>
@@ -55,67 +52,108 @@ export default {
     },
     data(){
         return{
-            menuName:[
-                {message:'热销',id:0,number:'',listcount:'',messages:''},
-                {message:'找醇茶',id:1,number:'',listcount:'',messages:'' },
-                {message:'找好茶',id:2,number:'',listcount:'',messages:'' }],
-            
+            menuName:'',
             allcount:'', 
+            goods:[]
         }
     },
     methods:{
-            add(id){
-                for (var i = 0 ; i < this.menuName.length;i++){
-                    if (this.menuName[i].id == id){
-                        if(this.allcount == ''){
-                            this.allcount = 1
-                        }else{
-                            this.allcount +=1
-                        }
-                        if(this.menuName[i].number ==''){
-                            this.menuName[i].messages = '<span style="font-size:44px;color: #333;" class="iconfont icon-ali-jianhao"></span>'
-                            this.menuName[i].number = 1
-                            if (this.menuName[i].listcount == ''){
-                                this.menuName[i].listcount = 1    
-                            }else{
-                                this.menuName[i].listcount += 1         
-                            }
-                    }else{ 
-                        this.menuName[i].number += 1
-                        this.menuName[i].listcount += 1                            
-                    }
-                }      
-            }   
-        },
-            minus(id){
-                for(var i = 0;i<this.menuName.length;i++){
-                    if(this.menuName[i].id==id){
-                        if(this.allcount == 1){
-                            this.allcount = ''
-                        }else{
-                            this.allcount -=1
-                        }
-                        if(this.menuName[i].number == 1){   
-                            this.menuName[i].number=''
-                            this.menuName[i].messages ='    '
-                            if (this.menuName[i].listcount == 1){
-                                this.menuName[i].listcount = ''
-                            }else{
-                                this.menuName[i].listcount -= 1
-                            }
-                    }else{
-                        this.menuName[i].number -=1
-                        this.menuName[i].listcount -=1
-                    }
+            add(id,indexA,indexB){
+                var inside = this.menuName[indexA].food[indexB];
+                if(this.allcount == ''){
+                    this.allcount = 1 
+                }else{
+                    this.allcount +=1          
                 }
-            }    
-        }
+                if(this.menuName[indexA].allcount == ''){
+                    this.menuName[indexA].allcount =1
+                }else{
+                    this.menuName[indexA].allcount +=1
+                }
+                if(inside.number ==''){
+                    inside.messages = '<span style="font-size:44px;color: #333;" class="iconfont icon-ali-jianhao"></span>'
+                    inside.number = 1 
+                    if (inside.listcount == ''){
+                        inside.listcount = 1 
+                    }else{
+                        inside.listcount += 1              
+                    }
+                }else{ 
+                    inside.number += 1
+                    inside.listcount += 1                         
+                }
+                var a = 0;
+                var b = 0;
+                if (this.goods.length != 0){
+                    for(var i=0;i<this.goods.length;i++){
+                        if (this.goods[i].id == inside.id){
+                            a++;
+                            b=i;            
+                        } 
+                    }
+                    if (a == 0){
+                        this.goods.push(
+                            {
+                                id : inside.id,
+                                name : inside.name,
+                                count : inside.listcount,
+                                money : inside.price
+                            }
+                        )
+                    }else{
+                        this.goods[b].count += 1;
+                    }
+                }else{
+                    this.goods.push(
+                        {
+                            id : inside.id,
+                            name : inside.name,
+                            count : inside.listcount,
+                            money : inside.price
+                        }
+                    ) 
+                }  
+                console.log(this.goods)
+            },
+            minus(id,indexA,indexB){ 
+                var inside1 = this.menuName[indexA].food[indexB];
+                if(this.allcount == 1){
+                    this.allcount = ''
+                }else{
+                    this.allcount -=1
+                }
+                if(this.menuName[indexA].allcount == 1){
+                    this.menuName[indexA].allcount =''
+                }else{
+                    this.menuName[indexA].allcount -=1
+                }
+                if(inside1.number == 1){   
+                    inside1.number=''
+                    inside1.messages ='    '
+                    if (inside1.listcount == 1){
+                        inside1.listcount = ''
+                    }else{
+                        inside1.listcount -= 1
+                    }  
+                }else{
+                    inside1.number -= 1
+                }
+            },
+        axiosTest(){
+            let _this = this
+            this.axios.get('https://www.easy-mock.com/mock/5c08e96ee1c4a705638a7f8c/example/example')
+            .then((res)=>{
+                console.log(res)
+                _this.menuName = res.data.goods
+            })
+            .catch((data)=>{
+                console.log(data)
+            })
+        },
     },
-    computed:{
-        Count(){
-            return this.allcount
-        }
-    }
+    mounted(){
+      this.axiosTest();
+    },
 } 
 </script>
 <style scoped>

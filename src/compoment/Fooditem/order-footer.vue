@@ -28,7 +28,7 @@
                     </a>
                 </div> 
                 <div class="entityList-cartbodyScroller_GxeX__0">
-                    <ul class="entityList-cartlist_-pDz7_0"> </ul> 
+                    <ul class="entityList-cartlist_-pDz7_0"></ul> 
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
         <div class="bottomNav-cartfooter_1qvQh_0" style="z-index: 11;">
 
             <span  role="button" aria-label="购物车" attr-quantity="0" :class="allcount >=1?'bottomNav-carticon_2xfrl_0 bottomNav-shake_2waDn_0':'bottomNav-carticon_2xfrl_0 bottomNav-shake_2waDn_0 bottomNav-empty_-atZ2_0'" data-spm-anchor-id="a2ogi.12117545.0.i0">
-                <span :class=" allcount >= 1?'active':'active1'">{{ allcount }}</span>
+                <span :class=" goods.length >= 1?'active':'active1'">{{ allcount }}</span>
             </span>
             <div role="button" aria-label="购物车有商品0件，共0元，。" class="bottomNav-cartInfo_135aa_0">
                 <p class="bottomNav-carttotal_1nOFY_0" data-spm-anchor-id="a2ogi.12117545.0.i4">
@@ -56,7 +56,7 @@
 </template>
 <script>
 export default {
-    props:['menuName','allcount'],
+    props:['menuName','allcount','goods'],
     data () {
         return {
             
