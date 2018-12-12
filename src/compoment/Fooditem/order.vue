@@ -41,7 +41,7 @@
                 </section>
             </main>
         </div>
-    <app-orderFooter :menuName ='menuName'  :allcount='allcount' :goods='goods' ></app-orderFooter>
+    <app-orderFooter  :menuName ='menuName'  :allcount='allcount' :goods='goods' ></app-orderFooter>
     </div>    
 </template>
 <script>
@@ -54,56 +54,47 @@ export default {
         return{
             menuName:'',
             allcount:'', 
-            goods:[]
+            goods:[],
         }
     },
     methods:{
-            add(id,indexA,indexB){
-                var inside = this.menuName[indexA].food[indexB];
-                if(this.allcount == ''){
-                    this.allcount = 1 
+        add(id,indexA,indexB){
+            var inside = this.menuName[indexA].food[indexB];
+            
+            if(this.allcount == ''){
+                this.allcount = 1 
+            }else{
+                this.allcount +=1          
+            }
+            if(this.menuName[indexA].allcount == ''){
+                this.menuName[indexA].allcount =1
+            }else{
+                this.menuName[indexA].allcount +=1
+            }
+            if(inside.number ==''){
+                inside.messages = '<span style="font-size:4.4vw;color: #333;" class="iconfont icon-ali-jianhao"></span>'
+                inside.number = 1 
+                if (inside.listcount == ''){
+                    inside.listcount = 1 
                 }else{
-                    this.allcount +=1          
+                    inside.listcount += 1              
                 }
-                if(this.menuName[indexA].allcount == ''){
-                    this.menuName[indexA].allcount =1
-                }else{
-                    this.menuName[indexA].allcount +=1
+            }else{ 
+                inside.number += 1
+                inside.listcount += 1                         
+            }
+
+            var a = 0;
+            var b = 0;
+
+            if (this.goods.length != 0){
+                for(var i=0;i<this.goods.length;i++){
+                    if (this.goods[i].id == inside.id){
+                        a++;
+                        b=i;            
+                    } 
                 }
-                if(inside.number ==''){
-                    inside.messages = '<span style="font-size:44px;color: #333;" class="iconfont icon-ali-jianhao"></span>'
-                    inside.number = 1 
-                    if (inside.listcount == ''){
-                        inside.listcount = 1 
-                    }else{
-                        inside.listcount += 1              
-                    }
-                }else{ 
-                    inside.number += 1
-                    inside.listcount += 1                         
-                }
-                var a = 0;
-                var b = 0;
-                if (this.goods.length != 0){
-                    for(var i=0;i<this.goods.length;i++){
-                        if (this.goods[i].id == inside.id){
-                            a++;
-                            b=i;            
-                        } 
-                    }
-                    if (a == 0){
-                        this.goods.push(
-                            {
-                                id : inside.id,
-                                name : inside.name,
-                                count : inside.listcount,
-                                money : inside.price
-                            }
-                        )
-                    }else{
-                        this.goods[b].count += 1;
-                    }
-                }else{
+                if (a == 0){
                     this.goods.push(
                         {
                             id : inside.id,
@@ -111,34 +102,67 @@ export default {
                             count : inside.listcount,
                             money : inside.price
                         }
-                    ) 
+                    )
+                }else{
+                    this.goods[b].count += 1;
+                }
+            }else{
+                this.goods.push(
+                    {
+                        id : inside.id,
+                        name : inside.name,
+                        count : inside.listcount,
+                        money : inside.price
+                    }
+                ) 
+            }  
+            console.log(this.goods)
+        },
+        minus(id,indexA,indexB){ 
+            var inside1 = this.menuName[indexA].food[indexB];
+            if(this.allcount == 1){
+                this.allcount = ''
+            }else{
+                this.allcount -=1
+            }
+            if(this.menuName[indexA].allcount == 1){
+                this.menuName[indexA].allcount =''
+            }else{
+                this.menuName[indexA].allcount -=1
+            }
+            if(inside1.number == 1){   
+                inside1.number=''
+                inside1.messages ='    '
+                if (inside1.listcount == 1){
+                    inside1.listcount = ''
+                }else{
+                    inside1.listcount -= 1
                 }  
-                console.log(this.goods)
-            },
-            minus(id,indexA,indexB){ 
-                var inside1 = this.menuName[indexA].food[indexB];
-                if(this.allcount == 1){
-                    this.allcount = ''
+            }else{
+                inside1.number -= 1
+                inside1.listcount -= 1
+            }
+            var $inside = this.goods
+            
+            if ($inside.length == 1){
+                if ($inside[0].count == 1){
+                    this.goods = []
                 }else{
-                    this.allcount -=1
+                    $inside[0].count -= 1
                 }
-                if(this.menuName[indexA].allcount == 1){
-                    this.menuName[indexA].allcount =''
-                }else{
-                    this.menuName[indexA].allcount -=1
-                }
-                if(inside1.number == 1){   
-                    inside1.number=''
-                    inside1.messages ='    '
-                    if (inside1.listcount == 1){
-                        inside1.listcount = ''
-                    }else{
-                        inside1.listcount -= 1
-                    }  
-                }else{
-                    inside1.number -= 1
-                }
-            },
+            }else{
+                for(var i=0;i<$inside.length;i++){
+                    if(inside1.id == $inside[i].id){
+                        if ($inside[i].count == 1){
+                            $inside.splice(i,1)
+                        }else{
+                            $inside[i].count -=1
+                        }
+                    }
+                } 
+            }            
+            console.log(this.goods)           
+        },
         axiosTest(){
             let _this = this
             this.axios.get('https://www.easy-mock.com/mock/5c08e96ee1c4a705638a7f8c/example/example')
@@ -342,7 +366,7 @@ dd{
     height: 25vw;
 }
 .iconfont{
-    font-size: 44px;
+    font-size: 4.4vw;
     color: #2395ff;
 }
 </style>
