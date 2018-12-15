@@ -25,7 +25,7 @@
                <p class="gonggao">公告：一杯简单饮品，存在着您无法想象的灵魂</p>
            </div>
         </div>
-        <div style="position:sticky;top:0px;z-index:2;">
+        <div style="position:sticky;top:0px;">
             <div class="shop-tab">
                 <div class="shop-tab2">
                     <p @click="changeMode(1)" :class="flag ==1?'tab-name':'tab-name2'">

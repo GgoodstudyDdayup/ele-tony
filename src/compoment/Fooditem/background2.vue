@@ -17,6 +17,6 @@ export default {
     bottom: 0;
     z-index: 3;
     background: rgba(0,0,0,.4);
-    transition: all .3s ease-in-out
+    transition: all .5s ease-in-out
 }
 </style>

@@ -6,10 +6,22 @@
  .active1{
      display: none
  }
- .active2{display:block;transition: opacity 5s ease-in-out}
- .active3{display:none;transition: opacity 5s ease-in-out}
+ .modal{
+    position:fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #000;
+    opacity: .4;
+    transition: all .5s ease;
+}
+ .active3{
+    display:none;
+
+        }
  .lineheight{
-     color: #fff
+    color: #fff
  }
  .green{
     height: 100%;
@@ -37,88 +49,134 @@
     text-align: center;
 }
 .shopcart-list{
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 13vw;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+}
+.shopcart-list2{
+    position: fixed;
+    bottom: 13vw;
     left: 0;
     z-index: 1;
     width: 100%;
-}  
+}
+/* .shopcart-list3{
+    animation:myfirst .3s linear 0s 1 forwards	
+}
+@keyframes myfirst {
+    0%{bottom:0vw}
+    100%{bottom:130vw }
+}   */
 h1{
     padding:0;
     margin: 0
 }
 .list-header{
-    height: 60px;
-    line-height: 60px;
-    padding: 0 25px;
+    height: 7vw;
+    line-height: 7vw;
+    padding: 0 2.5vw;
     background: #eceff1;
-    border-bottom: 1px solid rgba(7,17,27,0.1);
+    border-bottom: .01rem solid rgba(7,17,27,0.1);
 }
 .title{
     float: left;
-    font-size: 33px;
+    font-size: .33rem;
     color: #666
 }
 .empty{
     float: right;
-    font-size:28px;
+    font-size:.28rem;
     color: #666
 }
 .list-content{
-    padding: 0 18px;
-    max-height: 217vw;
-    overflow: hidden;
+    padding: 0 2vw;
+    max-height: 60vw;
+    overflow-x:auto;
     background: #fff;
 }
 .food{
     position: relative;
-    padding: 12px 0;
+    padding:2.5vw 0;
     box-sizing: border-box;
-    border: -1px rgba(7,17,27,0.1)
+    border-bottom: .01rem solid rgba(7,17,27,0.1)
 }
 .name{
-    line-height: 24px;
-    font-size: 33px;
+    line-height: 2.4vw;
+    font-size: .31rem;
     color: rgb(7,17,27);
     vertical-align: middle
 }
 .price{
     position: absolute;
-    right: 280px;
-    bottom: 12px;
-    line-height: 24px;
-    font-size: 32px;
+    right: 32vw;
+    bottom: 1.5vw;
+    line-height: 7vw;
+    font-size: .3rem;
     font-weight: 500;
     color: rgb(255, 83, 57);
 }
 .cartcontrol-wapper{
-    position:absolute;
-    left: 100px;
-    bottom: 16px;
+    position: absolute;
+    left: 10vw;
+    bottom: 1.6vw;
 }
 ul,li{
     padding: 0;
     margin: 0;
 }
+.cart-add {
+    position: absolute;
+    display: inline-block;
+    padding:0.6vw 2.3vw;
+    line-height: 3.5vw;
+    right: 0;
+    bottom:2.3vw
+}
+.cart-decrease{
+    position: absolute;
+    display: inline-block;
+    padding:0.6vw 2.3vw;
+    line-height: 3.5vw;
+    right: 12.5vw;
+    bottom:2.3vw
+}
+.cart-count{
+    display: inline-block;
+    position: absolute;
+    font-size:.3rem;
+    bottom: 2.8vw;
+    right: 10.5vw
+}
+
+.iconfont{
+    font-size: .44rem;
+    color: #2395ff;
+}
 </style>
 <template>
 
     <footer class="cartview-cartview_xUNA6">
-        <div class="cartview-cartmask_3rV-M" :class="this.show==true?'active2':'active3'" data-spm-anchor-id="a2ogi.12117545.0.i2"></div>
-        <div class="shopcart-list" transition='fold'>
+        <div :class="this.show==true?'modal':''" ></div>
+        <div class="shopcart-list">
             <div class="list-header">
                 <h1 class="title">购物车</h1>
                 <span class="empty">清空</span>
             </div>
-            <div class="list-content">
+            <div :class="this.show==true?'shopcart-list3 list-content2':''">
                 <ul>
                     <li class="food" v-for="food in goods" :key="food">
                         <span class="name">{{food.name}}</span>
                         <div class="price">
                             <span>￥{{food.money*food.count}}</span>
                         </div>  
-                         <div class="cartcontrol-wrapper">
-                            <cartcontrol :goods='goods'></cartcontrol>
+                        <div class="cartcontrol-wrapper">
+                            
+                                <div class="cart-decrease iconfont icon-ali-jianhao" v-show="goods.length>0"></div>
+                                <div class="cart-count">{{food.count}}</div>
+                                <div class="cart-add iconfont icon-ali-jiahao- button"></div>
+                            
                         </div>
                     </li>
                 </ul>
@@ -141,19 +199,13 @@ ul,li{
     </footer>
 </template>
 <script>
-import cartcontrol from './cartcontrol.vue'
 export default {
-    components:{
-        cartcontrol
-    },
     props:['menuName','allcount','goods'],
     data () {
         return {
             minprice:50,
             shadow:false,
             show:false,
-            active:{display:'block',transition: 'opacity .3s ease'},
-            active1:{display:'none',transition: 'opacity .3s ease'}
         }
     },
     methods:{
