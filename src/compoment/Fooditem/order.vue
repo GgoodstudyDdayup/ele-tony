@@ -30,9 +30,9 @@
                                             <p class="fooddetails-desc2">四季春茶搭配特选植物油，经由。。。。。。</p>
                                             <p class="fooddetails-sales">月售388份 好评率98%</p>
                                             <p style="color:rgb(255,83,57)" class="saleinfo-price" >{{ '￥' + title1.price +'元' }}</p>
-                                            <span @click.stop="minus(title1.id,a,b)" class="fooddetails-button2" v-html="title1.messages"></span>
+                                            <span  @click.stop="minus(title1.id,a,b)" class="fooddetails-button2" v-html="title1.messages"></span>
                                             <span  style="position: absolute;font-size: 0.3rem;left: 30vw;bottom: 7vw;color:#333">{{ title1.number }}</span>
-                                            <span @click.stop="add(title1.id,a,b)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                                
+                                            <span  @click.stop="add(title1.id,a,b)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                                
                                     </section>
                                 </div> 
                             </dd>
@@ -41,7 +41,7 @@
                 </section>
             </main>
         </div>
-    <app-orderFooter  :menuName ='menuName'  :allcount='allcount' :goods='goods' ></app-orderFooter>
+    <app-orderFooter @newNumber="upNumber"  :menuName ='menuName'  :allcount='allcount' :goods='goods' ></app-orderFooter>
     </div>    
 </template>
 <script>
@@ -57,10 +57,22 @@ export default {
             goods:[],
         }
     },
+
     methods:{
+        upNumber(newCount,newId){
+            for(var i=0;i<this.menuName.length;i++){
+                console.log(i)
+                for(var j=0;j<this.menuName[i].food.length;j++){
+                    if(this.menuName[i].food[j].id == newId.id){
+                        this.menuName[i].food[j].number = newCount.count
+                    }else{
+                        continue
+                    }
+                }    
+            }
+        },
         add(id,indexA,indexB){
             var inside = this.menuName[indexA].food[indexB];
-            
             if(this.allcount == ''){
                 this.allcount = 1 
             }else{

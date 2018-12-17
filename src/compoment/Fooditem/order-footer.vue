@@ -154,10 +154,10 @@ ul,li{
 <template>
     <footer class="cartview-cartview_xUNA6">
         <div :class="{modal:show,modal1:show2}" :style="act"></div>
-        <div :class="{shopcartlist2:show}">
+        <div :class="{active1:show==false,shopcartlist2:show==true}">
             <div class="list-header">
                 <h1 class="title">已选择商品</h1>
-                <span class="empty">清空</span>
+                <span @click="none" class="empty">清空</span>
             </div>
             <div class="list-content">
                 <ul>
@@ -167,9 +167,9 @@ ul,li{
                             <span>￥{{food.money*food.count}}</span>
                         </div>  
                         <div class="cartcontrol-wrapper">
-                            <div @click="child(index)" class="cart-decrease iconfont icon-ali-jianhao" v-show="goods.length>0"></div>
+                            <div @click="childDecrease(index)" class="cart-decrease iconfont icon-ali-jianhao" v-show="goods.length>0"></div>
                             <div class="cart-count">{{food.count}}</div>
-                            <div @click="child(index)" class="cart-add iconfont icon-ali-jiahao- button"></div>
+                            <div @click="childAdd(index);ncCount(food.count,food.id)" class="cart-add iconfont icon-ali-jiahao- button"></div>
                         </div>
                     </li>
                 </ul>
@@ -220,17 +220,44 @@ export default {
                     let _this = this
                     window.setTimeout(()=>{
                         _this.show = true
-                    },10)
+                    },100)
                 }
             }else{  
                 this.show =false
                 
             }
         },
-        child(num){
-            
-        }
-    },
+        childAdd(num){
+            let $inside = this.goods[num]
+            $inside.count +=1  
+        },
+        childDecrease(num){
+            let $inside = this.goods
+            for(var i=0;i<$inside.length;i++){
+                if($inside[num].id == $inside[i].id){
+                    if ($inside[i].count == 1){
+                        $inside.splice(i,1)
+                    }else{
+                        $inside[i].count -=1
+                    }
+                }
+                console.log(this.goods)
+            } 
+        },
+        none(){
+            this.goods.splice(0,this.goods.length)
+        },
+        ncCount(val,val2){
+            let newCount={
+                count:val
+            }
+            let newId={
+                id :val2
+            }
+            console.log(this.goods)
+            this.$emit('newnumber',newCount,newId)
+            }
+        },
     watch:{
         show(val){
             if(val == true){
