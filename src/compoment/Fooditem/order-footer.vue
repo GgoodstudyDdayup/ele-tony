@@ -14,7 +14,17 @@
     bottom: 0;
     background: #000;
     opacity: .4;
-    transition: all .5s ease;
+    transition: all .6s ease;
+}
+.modal1{  
+    position:fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0;
+    transition: all .6s ease;
 }
  .active3{
     display:none;
@@ -48,27 +58,13 @@
     font-size: .266667rem;
     text-align: center;
 }
-.shopcart-list{
+.shopcartlist2{
     position: fixed;
     bottom: 13vw;
     left: 0;
-    z-index: -1;
+    z-index: 10;
     width: 100%;
 }
-.shopcart-list2{
-    position: fixed;
-    bottom: 13vw;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-}
-/* .shopcart-list3{
-    animation:myfirst .3s linear 0s 1 forwards	
-}
-@keyframes myfirst {
-    0%{bottom:0vw}
-    100%{bottom:130vw }
-}   */
 h1{
     padding:0;
     margin: 0
@@ -92,7 +88,7 @@ h1{
 }
 .list-content{
     padding: 0 2vw;
-    max-height: 60vw;
+    max-height: 70vw;
     overflow-x:auto;
     background: #fff;
 }
@@ -104,7 +100,7 @@ h1{
 }
 .name{
     line-height: 2.4vw;
-    font-size: .31rem;
+    font-size: .37rem;
     color: rgb(7,17,27);
     vertical-align: middle
 }
@@ -156,27 +152,24 @@ ul,li{
 }
 </style>
 <template>
-
     <footer class="cartview-cartview_xUNA6">
-        <div :class="this.show==true?'modal':''" ></div>
-        <div class="shopcart-list">
+        <div :class="{modal:show,modal1:show2}" :style="act"></div>
+        <div :class="{shopcartlist2:show}">
             <div class="list-header">
-                <h1 class="title">购物车</h1>
+                <h1 class="title">已选择商品</h1>
                 <span class="empty">清空</span>
             </div>
-            <div :class="this.show==true?'shopcart-list3 list-content2':''">
+            <div class="list-content">
                 <ul>
-                    <li class="food" v-for="food in goods" :key="food">
+                    <li class="food" v-for="(food,index) in goods" :key="index">
                         <span class="name">{{food.name}}</span>
                         <div class="price">
                             <span>￥{{food.money*food.count}}</span>
                         </div>  
                         <div class="cartcontrol-wrapper">
-                            
-                                <div class="cart-decrease iconfont icon-ali-jianhao" v-show="goods.length>0"></div>
-                                <div class="cart-count">{{food.count}}</div>
-                                <div class="cart-add iconfont icon-ali-jiahao- button"></div>
-                            
+                            <div @click="child(index)" class="cart-decrease iconfont icon-ali-jianhao" v-show="goods.length>0"></div>
+                            <div class="cart-count">{{food.count}}</div>
+                            <div @click="child(index)" class="cart-add iconfont icon-ali-jiahao- button"></div>
                         </div>
                     </li>
                 </ul>
@@ -206,15 +199,47 @@ export default {
             minprice:50,
             shadow:false,
             show:false,
+            show2:false,
+            act:''
         }
     },
     methods:{
         show1(){
             let $goods = this.goods
             if($goods.length!=0){
-                this.show = !this.show
-            }else{
+                if(this.act ==''){
+                    this.show = !this.show 
+                    if(this.show == true){
+                        this.show2 = false 
+                    }else{  
+                        this.show2 =true
+                    } 
+                }else{
+                    this.act = ''
+                    this.show2 = false
+                    let _this = this
+                    window.setTimeout(()=>{
+                        _this.show = true
+                    },10)
+                }
+            }else{  
                 this.show =false
+                
+            }
+        },
+        child(num){
+            
+        }
+    },
+    watch:{
+        show(val){
+            if(val == true){
+                this.act = ''
+            }else{
+                let _this = this
+                window.setTimeout(() => {
+                    _this.act = {display:'none'}
+                }, 600);
             }
         }
     },

@@ -30,9 +30,9 @@
                                             <p class="fooddetails-desc2">四季春茶搭配特选植物油，经由。。。。。。</p>
                                             <p class="fooddetails-sales">月售388份 好评率98%</p>
                                             <p style="color:rgb(255,83,57)" class="saleinfo-price" >{{ '￥' + title1.price +'元' }}</p>
-                                            <span @click="minus(title1.id,a,b)" class="fooddetails-button2" v-html="title1.messages"></span>
+                                            <span @click.stop="minus(title1.id,a,b)" class="fooddetails-button2" v-html="title1.messages"></span>
                                             <span  style="position: absolute;font-size: 0.3rem;left: 30vw;bottom: 7vw;color:#333">{{ title1.number }}</span>
-                                            <span @click="add(title1.id,a,b)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                                
+                                            <span @click.stop="add(title1.id,a,b)" class="fooddetails-button iconfont icon-ali-jiahao- button"></span>                                                
                                     </section>
                                 </div> 
                             </dd>
