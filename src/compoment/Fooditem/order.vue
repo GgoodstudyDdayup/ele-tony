@@ -41,7 +41,7 @@
                 </section>
             </main>
         </div>
-    <app-orderFooter @newNumber="upNumber"  :menuName ='menuName'  :allcount='allcount' :goods='goods' ></app-orderFooter>
+    <app-orderFooter @ChildPlus="ChildPlus" @ChildMinus="ChildMinus"  :menuName ='menuName'  :allcount='allcount' :goods='goods' ></app-orderFooter>
     </div>    
 </template>
 <script>
@@ -59,17 +59,13 @@ export default {
     },
 
     methods:{
-        upNumber(newCount,newId){
-            for(var i=0;i<this.menuName.length;i++){
-                console.log(i)
-                for(var j=0;j<this.menuName[i].food.length;j++){
-                    if(this.menuName[i].food[j].id == newId.id){
-                        this.menuName[i].food[j].number = newCount.count
-                    }else{
-                        continue
-                    }
-                }    
-            }
+        ChildPlus(goods){
+         
+            this.add(goods.id,goods.indexA,goods.indexB)
+        },
+        ChildMinus(goods){
+            
+            this.minus(goods.id,goods.indexA,goods.indexB)
         },
         add(id,indexA,indexB){
             var inside = this.menuName[indexA].food[indexB];
@@ -112,7 +108,9 @@ export default {
                             id : inside.id,
                             name : inside.name,
                             count : inside.listcount,
-                            money : inside.price
+                            money : inside.price,
+                            indexA : indexA,
+                            indexB : indexB
                         }
                     )
                 }else{
@@ -124,11 +122,13 @@ export default {
                         id : inside.id,
                         name : inside.name,
                         count : inside.listcount,
-                        money : inside.price
+                        money : inside.price,
+                        indexA : indexA,
+                        indexB : indexB
                     }
                 ) 
             }  
-            console.log(this.goods)
+            //console.log(this.goods)
         },
         minus(id,indexA,indexB){ 
             var inside1 = this.menuName[indexA].food[indexB];

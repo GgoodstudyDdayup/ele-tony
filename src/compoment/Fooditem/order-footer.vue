@@ -169,7 +169,7 @@ ul,li{
                         <div class="cartcontrol-wrapper">
                             <div @click="childDecrease(index)" class="cart-decrease iconfont icon-ali-jianhao" v-show="goods.length>0"></div>
                             <div class="cart-count">{{food.count}}</div>
-                            <div @click="childAdd(index);ncCount(food.count,food.id)" class="cart-add iconfont icon-ali-jiahao- button"></div>
+                            <div @click="childAdd(index)" class="cart-add iconfont icon-ali-jiahao- button"></div>
                         </div>
                     </li>
                 </ul>
@@ -227,22 +227,11 @@ export default {
                 
             }
         },
-        childAdd(num){
-            let $inside = this.goods[num]
-            $inside.count +=1  
+        childAdd(num){   
+            this.$emit('ChildPlus',this.goods[num])
         },
         childDecrease(num){
-            let $inside = this.goods
-            for(var i=0;i<$inside.length;i++){
-                if($inside[num].id == $inside[i].id){
-                    if ($inside[i].count == 1){
-                        $inside.splice(i,1)
-                    }else{
-                        $inside[i].count -=1
-                    }
-                }
-                console.log(this.goods)
-            } 
+            this.$emit('ChildMinus',this.goods[num])
         },
         none(){
             this.goods.splice(0,this.goods.length)
