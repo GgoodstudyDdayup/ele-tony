@@ -4,7 +4,7 @@
             <main class="order-main2">
                 <div class="menu" >    
                     <div class="miaodian" v-for= "(m,i) in menuName" :key="i">
-                    <a :href="'#demo'+i" style="text-decoration:none;color:#666" >{{ m.name }}
+                    <a style="text-decoration:none;color:#666" >{{ m.name }}
                         <span :class="m.allcount >=1 ?'active':'active1'" >{{ m.allcount }}</span>
                     </a>
                     </div>

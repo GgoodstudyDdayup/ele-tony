@@ -14,7 +14,7 @@
 export default {
     data(){
         return{
-            name:"亚光请过目"
+            name:"定位系统尚未完成"
         }
     }
 }
