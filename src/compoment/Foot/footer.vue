@@ -24,11 +24,6 @@ export default {
             flag:1,
         }
     },
-    methods:{
-　　　　flushCom(){
-　　　　　　  
-　　　　}
-　　}
 }
 
 

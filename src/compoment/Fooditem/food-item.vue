@@ -18,7 +18,7 @@
                         <div class="rating">
                             <div class="rating-img">
                                 <div class="rating-img2">
-                                    <img src="../../下载.svg">  
+                                    <img src="../../dowload.svg">  
                                 </div>
                             </div>
                             <span class="rate-text">4.9</span>
